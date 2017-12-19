@@ -47,10 +47,10 @@ domain = 'https://www.sofarsounds.com'
 import sqlalchemy as sqa
 import pandas as pd
 creds = {
-    'user': 'ucoq7h2sabk90n',
-    'password': 'p9707226g0i18s86582v9or2081',
-    'hostname': 'ec2-52-30-189-58.eu-west-1.compute.amazonaws.com',
-    'db': 'd5srqo93idqsph'
+    'user': '',
+    'password': '',
+    'hostname': '',
+    'db': ''
 }
 
 engine = sqa.create_engine('postgresql://{user}:{password}@{hostname}:5432/{db}'.format(**creds))
