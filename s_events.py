@@ -22,14 +22,24 @@ def available(s):
     return a
 
 
-# In[12]:
+def conn()
+    import sqlalchemy as sqa
+    import pandas as pd
+    creds = {
+        'user': '',
+        'password': '',
+        'hostname': '',
+        'db': ''
+    }
+
+    engine = sqa.create_engine('postgresql://{user}:{password}@{hostname}:5432/{db}'.format(**creds))
 
 
 from datetime import datetime
 import re
 def cleandate(s):
     return re.sub(r'(\d)(st|nd|rd|th)', r'\1', s)
-#d = 
+#d =
 #d = datetime.strptime('Tuesday, 5th', '%A, %d')
 #d = datetime.strptime(cleandate('Friday, December 1st'), '%A, %B %d').strftime('%d/%m/2017')
 #d
@@ -44,16 +54,6 @@ domain = 'https://www.sofarsounds.com'
 # In[14]:
 
 
-import sqlalchemy as sqa
-import pandas as pd
-creds = {
-    'user': '',
-    'password': '',
-    'hostname': '',
-    'db': ''
-}
-
-engine = sqa.create_engine('postgresql://{user}:{password}@{hostname}:5432/{db}'.format(**creds))
 
 
 # ## Get cities list
@@ -79,7 +79,7 @@ city_with_no_gigs = []
 for city in cities:
     # go to city events page
     page = urllib2.urlopen(domain+'/'+city+'/events')
-    
+
     # parse and find the events list
     soup = BeautifulSoup(page)
     event_list = soup.find("div",class_='events-row')
@@ -88,9 +88,9 @@ for city in cities:
     try:
         all_links=event_list.find_all("a")
         for link in all_links:
-            if link.get("href").find('/events/') > 0: 
+            if link.get("href").find('/events/') > 0:
                 events.append(link.get("href"))
-    except: 
+    except:
         city_with_no_gigs.append(city)
 
 
@@ -134,7 +134,7 @@ for event in events:
     avl = soup.find("div",{"class":"shortcut-container"}).text.strip()
     availability.append(avl)
     apply.append(available(avl))
-    
+
 
 
 # In[19]:
@@ -168,4 +168,3 @@ soup = BeautifulSoup(cities_page)
 city_list = soup.find_all("a")
 for city in city_list:
     print(city.get("href"))
-
