@@ -25,12 +25,7 @@ def available(s):
 def conn()
     import sqlalchemy as sqa
     import pandas as pd
-    creds = {
-        'user': '',
-        'password': '',
-        'hostname': '',
-        'db': ''
-    }
+    import ../creds
 
     engine = sqa.create_engine('postgresql://{user}:{password}@{hostname}:5432/{db}'.format(**creds))
 
